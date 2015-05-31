@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\HomeModules.cs" />
+    <Compile Include="Modules\PhotoModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
