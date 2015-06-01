@@ -1,0 +1,8 @@
+Create Table Users(
+	id integer,
+	name char(50),
+	nick_name char(100),
+	email char(100),
+	password char(32),
+	avater char(255)
+);
