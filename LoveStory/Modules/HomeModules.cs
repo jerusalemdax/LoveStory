@@ -6,7 +6,7 @@ public class HomeModules : NancyModule
 	public HomeModules ()
 	{
 		Get ["/"] = paramters => {
-			return "This is our Love Story";
+			return View["index"];
 		};
 	}
 }
