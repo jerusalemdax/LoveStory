@@ -12,7 +12,17 @@ public class UserModule : NancyModule
 
         Post["/signup"] = paramters =>
         {
-            return View["index"];
+            return View["signup"];
+        };
+
+        Get["/signin"] = paramters =>
+        {
+            return View["/signin"];  
+        };
+
+        Post["/signin"] = paramters =>
+        {
+            return View["/signin"];
         };
     }
 }
