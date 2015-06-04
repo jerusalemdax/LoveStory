@@ -22,6 +22,8 @@ public class UserModule : NancyModule
 
         Post["/signin"] = paramters =>
         {
+            string username = (string)this.Request.Form.Username;
+            string password = (string)this.Request.Form.Password;
             return View["/signin"];
         };
     }
