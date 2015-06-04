@@ -1,8 +1,10 @@
-Create Table Users(
-	id integer,
-	name char(50),
-	nick_name char(100),
-	email char(100),
-	password char(32),
-	avater char(255)
-);
+CREATE TABLE users
+(
+  id serial NOT NULL PRIMARY KEY,
+  name character(50),
+  nick_name character(100),
+  email character(100),
+  password character(32),
+  avater character(255),
+  role integer
+)
