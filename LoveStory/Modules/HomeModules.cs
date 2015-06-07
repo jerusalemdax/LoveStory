@@ -1,12 +1,15 @@
 ﻿using System;
 using Nancy;
 using Simple.Data;
+using System.Threading.Tasks;
+using System.Net;
 
 public class HomeModules : NancyModule
 {
 	public HomeModules ()
 	{
-		Get ["/"] = paramters => {
+		Get ["/", true] = async (parameters, ct) =>
+		{
 			StaticConfiguration.DisableErrorTraces = false;
             var db = Database.OpenConnection("Server=localhost;Port=3306;Database=LoveStory;Uid=username;Pwd=password");
             var user = db.Users.FindByName("daniel");
