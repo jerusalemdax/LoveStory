@@ -8,7 +8,7 @@ public class HomeModules : NancyModule
 {
 	public HomeModules ()
 	{
-		Get ["/", true] = async (parameters, ct) =>
+		Get ["/"] = parameters =>
 		{
 			StaticConfiguration.DisableErrorTraces = false;
             var db = Database.OpenConnection("Server=localhost;Port=3306;Database=LoveStory;Uid=username;Pwd=password");
