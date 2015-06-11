@@ -76,12 +76,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormsAuthBootstrapper.cs" />
     <Compile Include="IUserDatabase.cs" />
+    <Compile Include="LoveStoryBootstrapper.cs" />
     <Compile Include="Modules\UserModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\HomeModules.cs" />
     <Compile Include="Modules\PhotoModule.cs" />
+    <Compile Include="SimpleDataHelper.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDatabase.cs" />
   </ItemGroup>
