@@ -3,6 +3,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using System.Collections.Generic;
+using Nancy.Responses;
 
 public class LoveStoryBootstrapper : DefaultNancyBootstrapper
 {
@@ -12,29 +13,37 @@ public class LoveStoryBootstrapper : DefaultNancyBootstrapper
 
         Console.WriteLine("LoveStoryBootstrapper ApplicationStartup");
 
-        //pipelines.BeforeRequest += (ctx) =>
-        //{
-        //    var username = ctx.Request.Query.username;
+        pipelines.BeforeRequest += (ctx) =>
+        {
+			Console.WriteLine("Pipelines Before Request");
+            var username = ctx.Request.Query.username;
 
-        //    if (username.HasValue)
-        //    {
-        //        ctx.CurrentUser = new DemoUserIdentity
-        //        {
-        //            UserName = username.ToString(),
-        //            Claims = BuildClaims(username.ToString())
-        //        };
-        //    }
+            if (username.HasValue)
+            {
+//                ctx.CurrentUser = new DemoUserIdentity
+//                {
+//                    UserName = username.ToString(),
+//                    Claims = BuildClaims(username.ToString())
+//                };
+            }
 
-        //    return null;
-        //};
+            return null;
+        };
 
-        //pipelines.AfterRequest += (ctx) =>
-        //{
-        //    if (ctx.Response.StatusCode == HttpStatusCode.Unauthorized)
-        //    {
-        //        ctx.Response = new RedirectResponse("/login?returnUrl=" + Uri.EscapeDataString(ctx.Request.Path));
-        //    }
-        //};
+        pipelines.AfterRequest += (ctx) =>
+        {
+			Console.WriteLine("Pipelines After Request");
+            if (ctx.Response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                ctx.Response = new RedirectResponse("/login?returnUrl=" + Uri.EscapeDataString(ctx.Request.Path));
+            }
+        };
+
+		pipelines.OnError += (ctx, ex) =>
+		{
+			Console.WriteLine("Pipelines OnError Request");
+			return null;
+		};
     }
 
     private static IEnumerable<string> BuildClaims(string userName)

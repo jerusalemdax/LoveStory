@@ -13,5 +13,14 @@ public class HomeModules : NancyModule
 		{
 			return View["index"];
 		};
+
+		Before += ctx => {
+			Console.WriteLine ("Before Home Page");
+			return null;
+		};
+
+		After += ctx => {
+			Console.WriteLine ("After Home Page");
+		};
 	}
 }
