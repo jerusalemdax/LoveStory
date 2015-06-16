@@ -16,17 +16,6 @@ public class LoveStoryBootstrapper : DefaultNancyBootstrapper
         pipelines.BeforeRequest += (ctx) =>
         {
 			Console.WriteLine("Pipelines Before Request");
-            var username = ctx.Request.Query.username;
-
-            if (username.HasValue)
-            {
-//                ctx.CurrentUser = new DemoUserIdentity
-//                {
-//                    UserName = username.ToString(),
-//                    Claims = BuildClaims(username.ToString())
-//                };
-            }
-
             return null;
         };
 
