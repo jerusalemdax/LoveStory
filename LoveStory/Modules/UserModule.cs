@@ -73,7 +73,7 @@ public class UserModule : NancyModule
 			{
 				return "password format error, must start with character and contains number";
 			}
-			SimpleDataHelper.DB.Users.Insert(Name: username, Email: email, Nick_Name: nick_name, Password: password);
+			SimpleDataHelper.DB.Users.Insert(Name: username, Email: email, Nick_Name: nick_name, Password: password, Avater:"", Role:1, Guid: Guid.NewGuid());
 			return "sign up success";
         };
 
