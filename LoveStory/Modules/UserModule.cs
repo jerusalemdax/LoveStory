@@ -14,9 +14,9 @@ public class UserModule : NancyModule
         Post["/signup"] = paramters =>
         {
 			string username = (string)this.Request.Form.Username;
-			if(username == string.Empty || username.Length > 50)
+			if(username == string.Empty || username.Length > 50 || username.Length < 6)
 			{
-				return "username is empty or too long";
+				return "username is empty or too long or too short";
 			}
 
 			if(SimpleDataHelper.DB.Users.Exists(SimpleDataHelper.DB.Users.Name == username))
@@ -45,9 +45,9 @@ public class UserModule : NancyModule
 			}
 
 			string nick_name = (string)this.Request.Form.NickName;
-			if( nick_name == string.Empty || nick_name.Length > 100)
+			if( nick_name == string.Empty || nick_name.Length > 100 || nick_name.Length < 3)
 			{
-				return "nickname is empty";
+				return "nickname is empty or too long or too short";
 			}
 			if(!Regex.IsMatch(nick_name, @"^[\u4E00-\u9FA5A-Za-z0-9_]+$"))
 			{

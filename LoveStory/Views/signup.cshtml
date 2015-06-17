@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width"  charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  charset="UTF-8" />
     <title>注册</title>
 	<link rel="stylesheet" href="Contents/css/bootstrap.min.css">
 	<link rel="stylesheet" href="Contents/css/bootstrap-theme.min.css">
@@ -12,21 +12,21 @@
     <div>
     <form method="POST">
         <label>用户名</label>
-        <input type="text" name="username" />
+        <input class="form-control" type="text" name="username" />
         <br />
         <label>邮箱</label>
-        <input type="text" name="email" />
+        <input class="form-control" type="text" name="email" />
         <br />
         <label>昵称</label>
-        <input type="text" name="nickname" />
+        <input class="form-control" type="text" name="nickname" />
         <br />
         <label>密码</label>
-        <input type="password" name="password" />
+        <input class="form-control" type="password" name="password" />
         <br />
         <label>确认密码</label>
-        <input type="password" name="confirm_password" />
+        <input class="form-control" type="password" name="confirm_password" />
         <br />
-        <input type="submit" value="注册" />
+        <button class="btn btn-primary" type="submit">注册</button>
     </form>
     </div>
 </body>
