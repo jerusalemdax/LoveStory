@@ -1,24 +1,11 @@
-﻿<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"  charset="UTF-8" />
-    <title>登陆</title>
-	<link rel="stylesheet" href="Contents/css/bootstrap.min.css">
-	<link rel="stylesheet" href="Contents/css/bootstrap-theme.min.css">
-    <script src="Contents/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div>
-        <form method="POST">
-            <label>用户名</label>
-            <input type="text" name="username" />
-            <br />
-            <label>密码</label>
-            <input type="password" name="password" />
-            <br />
-            <input type="submit" value="登陆" />
-        </form>
-    </div>
-</body>
-</html>
+﻿<div class="jumbotron">
+    <form method="POST">
+        <label>用户名</label>
+        <input class="form-control" type="text" name="username" />
+        <br />
+        <label>密码</label>
+        <input class="form-control" type="password" name="password" />
+        <br />
+		<button class="btn btn-primary" type="submit">登陆</button>
+    </form>
+</div>

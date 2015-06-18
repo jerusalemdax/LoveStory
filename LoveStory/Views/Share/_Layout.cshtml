@@ -1,33 +1,32 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的 ASP.NET 应用程序</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>爱的故事</title>
+    <link href="~/Contents/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Contents/js/bootstrap.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+    	        <div class="navbar-collapse collapse">
+    	            <ul class="nav navbar-nav">
+                    	<li><a href="~/">爱的故事</a></li>
+                		<li><a href="/signup">注册</a></li>
+                		<li><a href="/signin">登陆</a></li>
+            		</ul>
+        		</div>
             </div>
         </div>
+
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>我的 ASP.NET 应用程序</p>
+            <p>我们的爱的故事</p>
         </footer>
     </div>
 </body>
