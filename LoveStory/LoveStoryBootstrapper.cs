@@ -4,6 +4,7 @@ using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
 using System.Collections.Generic;
 using Nancy.Responses;
+using Nancy.Authentication.Forms;
 
 public class LoveStoryBootstrapper : DefaultNancyBootstrapper
 {
@@ -12,6 +13,7 @@ public class LoveStoryBootstrapper : DefaultNancyBootstrapper
         base.ApplicationStartup(container, pipelines);
 
         Console.WriteLine("LoveStoryBootstrapper ApplicationStartup");
+		StaticConfiguration.DisableErrorTraces = false;
 
         pipelines.BeforeRequest += (ctx) =>
         {
@@ -22,10 +24,6 @@ public class LoveStoryBootstrapper : DefaultNancyBootstrapper
         pipelines.AfterRequest += (ctx) =>
         {
 			Console.WriteLine("Pipelines After Request");
-            if (ctx.Response.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                ctx.Response = new RedirectResponse("/login?returnUrl=" + Uri.EscapeDataString(ctx.Request.Path));
-            }
         };
 
 		pipelines.OnError += (ctx, ex) =>
@@ -35,16 +33,24 @@ public class LoveStoryBootstrapper : DefaultNancyBootstrapper
 		};
     }
 
-    private static IEnumerable<string> BuildClaims(string userName)
-    {
-        var claims = new List<string>();
+	protected override void ConfigureRequestContainer (TinyIoCContainer container, NancyContext context)
+	{
+		Console.WriteLine("BootStrapper Configure Request Container");
+		base.ConfigureRequestContainer (container, context);
 
-        // Only bob can have access to SuperSecure
-        if (String.Equals(userName, "bob", StringComparison.InvariantCultureIgnoreCase))
-        {
-            claims.Add("SuperSecure");
-        }
+		container.Register<IUserMapper, UserDatabase> ();
+	}
 
-        return claims;
-    }
+	protected override void RequestStartup (TinyIoCContainer container, IPipelines pipelines, NancyContext context)
+	{
+		Console.WriteLine("BootStrapper Request Startup");
+		base.RequestStartup (container, pipelines, context);
+
+		var formsAuthConfiguration = new FormsAuthenticationConfiguration ()
+		{
+			RedirectUrl = "~/signin",
+			UserMapper = container.Resolve<IUserMapper>(),				
+		};
+		FormsAuthentication.Enable (pipelines, formsAuthConfiguration);
+	}
 }

@@ -9,9 +9,12 @@ public class HomeModules : NancyModule
 {
 	public HomeModules ()
 	{
+		this.RequiresAuthentication();
+
 		Get ["/"] = parameters =>
 		{
-			return View["index"];
+			var model = new UserModel(this.Context.CurrentUser.UserName);
+			return View["index", model];
 		};
 
 		Before += ctx => {

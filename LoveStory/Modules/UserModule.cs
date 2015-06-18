@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using Nancy;
+using System.Dynamic;
+using Nancy.Extensions;
+using Nancy.Authentication.Forms;
 
 public class UserModule : NancyModule
 {
@@ -79,12 +82,30 @@ public class UserModule : NancyModule
 
         Get["/signin"] = paramters =>
         {
-            return View["/signin"];  
+			dynamic model = new ExpandoObject();
+			model.Errored = this.Request.Query.error.HasValue;
+			if(model.Errored)
+			{
+				model.ErrorUsername = this.Request.Query.username;
+			}
+			return View["/signin", model];
         };
 
         Post["/signin"] = paramters =>
         {
-            return View["/signin"];
+			var userGuid = UserDatabase.ValidateUser((string)this.Request.Form.Username, (string)this.Request.Form.Password);
+
+			if (userGuid == null)
+			{
+				return this.Context.GetRedirect("~/signin?error=true&username=" + (string)this.Request.Form.Username);
+			}
+			DateTime? expiry = null;
+			if (this.Request.Form.RememberMe.HasValue)
+			{
+				expiry = DateTime.Now.AddDays(7);
+			}
+
+			return this.LoginAndRedirect(userGuid.Value, expiry);
         };
     }
 }

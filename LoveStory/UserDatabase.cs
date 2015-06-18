@@ -4,15 +4,23 @@ using Simple.Data;
 using Nancy.Security;
 using Nancy;
 
-public class UserDatabase : IUserMapper, IUserDatabase
+public class UserDatabase : IUserMapper
 {
     public IUserIdentity GetUserFromIdentifier(Guid identifier, NancyContext context)
     {
-        return null;
+		Console.WriteLine ("UserDatabase GetUserFromIdentifier");
+		var userRecord = SimpleDataHelper.DB.Users.FindByGuid (identifier.ToString());
+		return userRecord == null? null : new UserIdentity {UserName = userRecord.Name};
     }
 
-    public Guid? ValidateUser(string username, string password)
+    public static Guid? ValidateUser(string username, string password)
     {
-        return null;
+		Console.WriteLine ("UserDatabase ValidateUser");
+		var userRecord = SimpleDataHelper.DB.Users.FindByNameAndPassword (username, password);
+		if (userRecord == null)
+		{
+			return null;
+		}
+		return new Guid(userRecord.Guid);
     }
 }

@@ -88,7 +88,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IUserDatabase.cs" />
     <Compile Include="LoveStoryBootstrapper.cs" />
     <Compile Include="Modules\HomeModule.cs" />
     <Compile Include="Modules\SecureModule.cs" />
@@ -98,6 +97,8 @@
     <Compile Include="SimpleDataHelper.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserDatabase.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="UserIendity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -160,5 +161,6 @@
     <Folder Include="Contents\css\" />
     <Folder Include="Contents\fonts\" />
     <Folder Include="Contents\js\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 </Project>

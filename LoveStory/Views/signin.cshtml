@@ -6,6 +6,12 @@
         <label>密码</label>
         <input class="form-control" type="password" name="password" />
         <br />
+        <label>记住我</label>
+        <input name="rememberme" type="checkbox" value="True" />
+        <br />
 		<button class="btn btn-primary" type="submit">登陆</button>
     </form>
+    @if (Model.Errored) {
+        <div id="errorBox" class="floatingError">用户名或密码不正确: @Model.ErrorUsername</div>
+    }
 </div>
