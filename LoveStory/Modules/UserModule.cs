@@ -76,7 +76,7 @@ public class UserModule : NancyModule
 			{
 				return "password format error, must start with character and contains number";
 			}
-			SimpleDataHelper.DB.Users.Insert(Name: username, Email: email, Nick_Name: nick_name, Password: password, Avater:"", Role:1, Guid: Guid.NewGuid());
+			SimpleDataHelper.DB.Users.Insert(Name: username, Email: email, Nick_Name: nick_name, Password: MD5Helper.MD5(password), Avater:"", Role:1, Guid: Guid.NewGuid());
 			return "sign up success";
         };
 
@@ -93,6 +93,7 @@ public class UserModule : NancyModule
 
         Post["/signin"] = paramters =>
         {
+			Console.WriteLine(MD5Helper.MD5((string)this.Request.Form.Password));
 			var userGuid = UserDatabase.ValidateUser((string)this.Request.Form.Username, (string)this.Request.Form.Password);
 
 			if (userGuid == null)

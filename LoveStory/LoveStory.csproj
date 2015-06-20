@@ -99,6 +99,7 @@
     <Compile Include="UserDatabase.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="UserIendity.cs" />
+    <Compile Include="Utils\MD5Helper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -162,5 +163,6 @@
     <Folder Include="Contents\fonts\" />
     <Folder Include="Contents\js\" />
     <Folder Include="Models\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 </Project>

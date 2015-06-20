@@ -16,7 +16,7 @@ public class UserDatabase : IUserMapper
     public static Guid? ValidateUser(string username, string password)
     {
 		Console.WriteLine ("UserDatabase ValidateUser");
-		var userRecord = SimpleDataHelper.DB.Users.FindByNameAndPassword (username, password);
+		var userRecord = SimpleDataHelper.DB.Users.FindByNameAndPassword (username, MD5Helper.MD5(password));
 		if (userRecord == null)
 		{
 			return null;
